@@ -1,0 +1,15 @@
+$theme-colors: (
+    "primary": #48cae4,
+    // "primary": #f80000,
+);
+
+$container-max-widths: (
+  xl: 540px,
+  lg: 540px,
+
+);
+
+$border-radius: 10rem;
+
+
+@import "node_modules/bootstrap/scss/bootstrap";
