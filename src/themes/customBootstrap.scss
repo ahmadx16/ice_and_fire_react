@@ -1,0 +1,29 @@
+// Bootstrap custom theming 
+
+$theme-colors: (
+  "ice": #48cae4,
+  "fire": #e63946 // "primary": #f80000,
+);
+
+$container-max-widths: (
+  lg: 540px,
+);
+
+$border-radius: 10rem;
+
+// google font lobster for heading
+@import url(https://fonts.googleapis.com/css2?family=Lobster&display=swap);
+
+$font-heading:  'Lobster', cursive;
+
+h1, h2 {
+  font-family: $font-heading;
+}
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// ======================================================
+
+
+// fontawesome icons
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
