@@ -9,7 +9,7 @@ const loginAction = async (userName, password) => {
     }
 
     try {
-        const loginResponse = await axios.post('http://localhost:8000/users/login', user);
+        const loginResponse = await axios.post('http://localhost:8080/users/login', user);
         return loginResponse.data.token;
 
     } catch (err) {
