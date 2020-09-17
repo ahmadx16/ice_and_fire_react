@@ -10,10 +10,14 @@ const loginAction = async (userName, password) => {
 
     try {
         const loginResponse = await axios.post('http://localhost:8080/users/login', user);
-        return loginResponse.data.token;
+        if (loginResponse.data.token) {
+            return {token: loginResponse.data.token};
+        } else {
+            return {error:"login Error"};
+        }
 
     } catch (err) {
-        console.log(err.response)
+        return {error:err.response}
     }
 
 }

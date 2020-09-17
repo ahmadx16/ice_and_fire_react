@@ -6,6 +6,8 @@ const ProtectedRoute = (props) => {
 
         const Component = props.component;
         let isAuthenticated = false;
+
+        // Currently authenticating on presence of token
         if(localStorage.getItem('token'))
             isAuthenticated = true;
        

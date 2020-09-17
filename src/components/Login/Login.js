@@ -3,13 +3,15 @@ import { Redirect } from 'react-router-dom'
 
 import ThemeOptions from './ThemeOptions';
 import loginAction from '../../actions/loginActions';
-import ThemeContext from '../../contexts/themeContext'
+import ThemeContext from '../../contexts/themeContext';
+import ErrorBlock from '../Errors/ErrorBlock';
 
 const Login = (props) => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [token, setToken] = useState(localStorage.getItem('token'));
+    const [error, setError] = useState(false);
 
     const themeContext = useContext(ThemeContext)
     const theme = themeContext.theme
@@ -23,13 +25,15 @@ const Login = (props) => {
 
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        const token = await loginAction(userName, password);
-        localStorage.setItem('token', token);
-        setToken(token);
+        const loginResponse = await loginAction(userName, password);
+        if (!loginResponse.token) {
+            setError(true);
+        }
+        localStorage.setItem('token', loginResponse.token);
+        setToken(loginResponse.token);
     }
 
     return (
-
         <div className="container p-3 my-5">
 
             {/* Redirect if already logged in */}
@@ -39,6 +43,9 @@ const Login = (props) => {
             <div className="d-flex justify-content-center">
                 <h1 className={`text-${theme} display-3`}> Ice and Fire </h1>
             </div>
+
+
+            {error && (<ErrorBlock errorMessage="Cannot login with provided credentials" />)}
 
             <form onSubmit={handleLoginSubmit}>
                 <div className="form-group mt-3">

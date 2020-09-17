@@ -10,7 +10,7 @@ const Logout = (props) => {
             return
       
         localStorage.removeItem('token');
-        
+        // Redirecting to login page
         history.push('');
         
     }
