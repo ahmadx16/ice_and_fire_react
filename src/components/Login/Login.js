@@ -11,7 +11,7 @@ const Login = (props) => {
 
 
     const [token, setToken] = useState(localStorage.getItem('token'));
-    const [error, setError] = useState(false);
+    const [error, setError] = useState("");
 
     const themeContext = useContext(ThemeContext)
     const theme = themeContext.theme
@@ -20,10 +20,11 @@ const Login = (props) => {
         e.preventDefault();
         const loginResponse = await loginAction(userName, password);
         if (!loginResponse.token) {
-            setError(true);
+            setError(loginResponse.error);
+        } else {
+            localStorage.setItem('token', loginResponse.token);
+            setToken(loginResponse.token);
         }
-        localStorage.setItem('token', loginResponse.token);
-        setToken(loginResponse.token);
     }
 
     return (
@@ -36,7 +37,7 @@ const Login = (props) => {
                 <h1 className={`text-${theme} display-3`}> Ice and Fire </h1>
             </div>
 
-            {error && (<ErrorBlock errorMessage="Cannot login with provided credentials" />)}
+            <ErrorBlock errorMessage={error} />
             <LoginForm onSubmit={handleLoginSubmit} />
             <ThemeOptions />
         </div>

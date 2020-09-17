@@ -10,16 +10,19 @@ const loginAction = async (userName, password) => {
 
     try {
         const loginResponse = await axios.post('http://localhost:8080/users/login', user);
-        if (loginResponse.data.token) {
-            return { token: loginResponse.data.token };
-        }
-        return { error: "login Error" };
-
+        return { token: loginResponse.data.token };
 
     } catch (err) {
-        return { error: err.response }
-    }
+        // No response indicating a network error
+        if (!err.response) {
+            return { error: "Network Error: Cannot connect to localhost backend at port 8080" }
+        }
 
+        if (err.response.status === 400)
+            return { error: "Cannot Login with provided credentials" }
+
+        return { error: "An Error occured, Please contact support" }
+    }
 }
 
 export default loginAction;
