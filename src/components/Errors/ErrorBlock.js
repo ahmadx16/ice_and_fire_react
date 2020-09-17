@@ -5,7 +5,7 @@ const ErrorBlock = (props) => {
 
     return (
         <span className="text-danger">
-           {props.errorMessage}
+            {props.errorMessage}
         </span>
     );
 }

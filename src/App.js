@@ -15,13 +15,13 @@ function App() {
   const updateTheme = (newTheme) => {
     setTheme(newTheme);
   }
-  
+
   return (
     <ThemeProvider value={{ theme: theme, updateTheme: updateTheme }}>
       <Router>
         <Switch>
-          <Route exact path='/' component={Login}/>
-          <ProtectedRoute exact path='/dashboard' component={Dashboard}  />
+          <Route exact path='/' component={Login} />
+          <ProtectedRoute exact path='/dashboard' component={Dashboard} />
         </Switch>
       </Router>
     </ThemeProvider>

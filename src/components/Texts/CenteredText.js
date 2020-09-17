@@ -5,7 +5,7 @@ const CenteredText = (props) => {
 
     return (
         <div className="d-flex justify-content-center">
-           {props.text}
+            {props.text}
         </div>
     );
 }

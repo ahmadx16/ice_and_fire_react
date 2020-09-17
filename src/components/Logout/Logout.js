@@ -8,11 +8,11 @@ const Logout = (props) => {
     const onLogoutClick = () => {
         if (!localStorage.getItem('token'))
             return
-      
+
         localStorage.removeItem('token');
         // Redirecting to login page
         history.push('');
-        
+
     }
 
     return (
