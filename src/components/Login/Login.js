@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom'
 
-import { ICE, FIRE } from '../../themes/colorThemes';
 import ThemeOptions from './ThemeOptions';
 import loginAction from '../../actions/loginActions';
-
+import ThemeContext from '../../contexts/themeContext'
 
 const Login = (props) => {
 
@@ -15,7 +14,8 @@ const Login = (props) => {
         token: "",
     });
 
-    const [theme, setTheme] = useState(ICE);
+    const themeContext = useContext(ThemeContext)
+    const theme = themeContext.theme
 
 
     const onUserNameChange = (e) => {
@@ -24,12 +24,7 @@ const Login = (props) => {
     const onPasswordChange = (e) => {
         setPassword(e.target.value);
     }
-    const setThemetoIce = () => {
-        setTheme(ICE)
-    }
-    const setThemetoFire = () => {
-        setTheme(FIRE)
-    }
+    
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         const token = await loginAction(userName, password);
@@ -79,7 +74,7 @@ const Login = (props) => {
 
             </form>
 
-            <ThemeOptions theme={theme} setThemetoIce={setThemetoIce} setThemetoFire={setThemetoFire} />
+            <ThemeOptions />
         </div>
     );
 }

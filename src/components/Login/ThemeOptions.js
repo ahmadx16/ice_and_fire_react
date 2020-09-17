@@ -1,9 +1,22 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import { ICE, FIRE } from '../../themes/colorThemes';
+import ThemeContext from '../../contexts/themeContext'
 
-const ThemeOptions = ({ theme, setThemetoIce, setThemetoFire }) => {
+const ThemeOptions = () => {
     // Theme option button, Ice or Fire
+
+    const themeContext = useContext(ThemeContext);
+    const theme = themeContext.theme
+    const updateTheme = themeContext.updateTheme
+
+
+    const setThemetoIce = () => {
+        updateTheme(ICE);
+    }
+    const setThemetoFire = () => {
+        updateTheme(FIRE);
+    }
 
     return (
 

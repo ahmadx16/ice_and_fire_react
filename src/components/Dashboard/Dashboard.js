@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 
-import { ICE } from '../../themes/colorThemes';
+import ThemeContext from '../../contexts/themeContext'
 
 const Dashboard = (props) => {
 
-    const [token, setToken] = useState("");
-    console.log(props)
-
-    useEffect(() => {
-
-        // Getting token sent from login screen
-        if (props.location.state) {
-            setToken(props.location.state.token);
-        }
-    }, [props.location.state]);
-    const [theme, setTheme] = useState(ICE);
-
+    var token = "You are not logined yet. Please login to get token";
+    if (props.location.state) {
+        token = props.location.state.token;
+    }
+    const themeContext = useContext(ThemeContext);
+    const theme = themeContext.theme;
 
     return (
         <div className="container p-3 my-5">
