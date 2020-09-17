@@ -36,7 +36,7 @@ The above commands will download the repository and switch the branch.
 
 ## Environment Setup
 
-This application requires [Nodejs]() and [npm]() installed on the system to execute. You can learn how to install on provided links. It is recommended to install latest version of node and npm. 
+This application requires [Nodejs and npm](https://nodejs.org/en/) (npm now comes with node by default) installed on the system to execute. You can learn how to install on provided links. It is recommended to install latest version of node and npm. 
 After you have installed node and npm run following command.
 
 ``` shell
