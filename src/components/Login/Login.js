@@ -9,14 +9,10 @@ const Login = (props) => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [loginInfo, setLoginInfo] = useState({
-        isLoggedIn: false,
-        token: "",
-    });
+    const [token, setToken] = useState(localStorage.getItem('token'));
 
     const themeContext = useContext(ThemeContext)
     const theme = themeContext.theme
-
 
     const onUserNameChange = (e) => {
         setUserName(e.target.value);
@@ -24,14 +20,12 @@ const Login = (props) => {
     const onPasswordChange = (e) => {
         setPassword(e.target.value);
     }
-    
+
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
         const token = await loginAction(userName, password);
-        setLoginInfo({
-            isLoggedIn: true,
-            token: token,
-        });
+        localStorage.setItem('token', token);
+        setToken(token);
     }
 
     return (
@@ -39,10 +33,7 @@ const Login = (props) => {
         <div className="container p-3 my-5">
 
             {/* Redirect if already logged in */}
-            { loginInfo.isLoggedIn ? (<Redirect to={{
-                pathname: "/dashboard",
-                state: { token: loginInfo.token }
-            }} token={loginInfo.token} />) : null}
+            { token && (<Redirect to="/dashboard" />)}
 
 
             <div className="d-flex justify-content-center">

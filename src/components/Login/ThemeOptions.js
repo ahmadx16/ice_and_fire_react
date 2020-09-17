@@ -6,10 +6,7 @@ import ThemeContext from '../../contexts/themeContext'
 const ThemeOptions = () => {
     // Theme option button, Ice or Fire
 
-    const themeContext = useContext(ThemeContext);
-    const theme = themeContext.theme
-    const updateTheme = themeContext.updateTheme
-
+    const {theme, updateTheme}  = useContext(ThemeContext);
 
     const setThemetoIce = () => {
         updateTheme(ICE);

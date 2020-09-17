@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
 import { ThemeProvider } from './contexts/themeContext';
@@ -19,8 +20,8 @@ function App() {
     <ThemeProvider value={{ theme: theme, updateTheme: updateTheme }}>
       <Router>
         <Switch>
-          <Route exact path='/' component={Login}></Route>
-          <Route exact path='/dashboard' render={(props) => <Dashboard {...props} />} ></Route>
+          <Route exact path='/' component={Login}/>
+          <ProtectedRoute exact path='/dashboard' component={Dashboard}  />
         </Switch>
       </Router>
     </ThemeProvider>

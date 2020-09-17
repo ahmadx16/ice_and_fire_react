@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 
 import ThemeContext from '../../contexts/themeContext'
+import Logout from '../Logout/Logout'
 
 const Dashboard = (props) => {
 
     var token = "You are not logined yet. Please login to get token";
-    if (props.location.state) {
-        token = props.location.state.token;
+    if (localStorage.getItem('token')) {
+        token = localStorage.getItem('token');
     }
+
     const themeContext = useContext(ThemeContext);
     const theme = themeContext.theme;
 
@@ -27,6 +29,13 @@ const Dashboard = (props) => {
 
             Use this token on header while making requests to backend. For more Information about backend visit
             <a href="https://github.com/ahmadx16/IceAndFire_Django/tree/authentication" target="_blank"> backend</a>
+
+
+
+            {/* Logout Button */}
+            <div >
+                <Logout />
+            </div>
 
         </div>
     );
